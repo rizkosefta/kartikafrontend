@@ -1,3 +1,4 @@
+"use client";
 import React, { Children, ReactNode } from "react";
 
 import "swiper/css";
