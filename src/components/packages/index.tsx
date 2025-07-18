@@ -9,10 +9,6 @@ import People from "@/assets/images/people.svg";
 import PinPoint from "@/assets/images/pinpoint.svg";
 
 
-
-
-
-
 type Props = {
   show: TShow
 };
@@ -49,17 +45,20 @@ export function ContentPopular({data}: {data: TPackage[]}) {
               <span className="font-semibold">{item.name}</span>
               <span className="flex gap-x-3">
                 <span className="flex gap-x-1">
-                  <span className="text-color2">
-                  <Image src={Notes} alt="Notes" className="w-6 h-6" />
+                  <span className="font-semibold">
+                  <h2>Rp.</h2>
                   </span>
-                  <span className="text-gray2">{item.category.name}</span>
+                  <span className="text-color3">{item.tiers.length > 0 ?
+                    item.tiers.reduce((min, low) => low.price < min.price ? low : min).price
+                    : 0
+                  }</span>
                 </span>
 
                 <span className="flex gap-x-1">
                   <span className="text-color2">
                   <Image src={People} alt="People" className="w-6 h-6" />
                   </span>
-                  <span className="text-gray2">{item.tiers.length > 0 ?
+                  <span className="font-semibold">{item.tiers.length > 0 ?
                     item.tiers.reduce((min, low) => low.price < min.price ? low : min).quantity
                     : 0
                   }</span>

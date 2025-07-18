@@ -4,6 +4,7 @@ import Categories from "@/components/categories";
 import Image from "next/image";
 import Packages from "@/components/packages";
 import Testimonials from "@/components/testimonials";
+import Bottombar from "@/components/bottombar";
 
 export default function Home() {
   return (
@@ -96,9 +97,12 @@ export default function Home() {
 
   {/* paket terlaris */}
     <section className="relative">
-      <h2 className="font-semibold mb-4 px-4">Fresh From Kitchen</h2>
+      <h2 className="font-semibold mb-4 px-4">Paket paling laris</h2>
       <Packages show="newest"/>
     </section>
+
+  {/* Bottombar */}
+    <Bottombar/>
   </>
   );
 }
