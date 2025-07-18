@@ -11,8 +11,8 @@ export function ContentCategory({data}: {data: TCategory}) {
     <figure className="w-16 aspect-square relative">
       <Image
       fill
-        className="w-full h-full object-cover object-center"
-        src={`${process.env.HOST_API}/${data.photo}`}
+        className="w-full h-full object-cover object-center rounded-full"
+        src={`${process.env.HOST_API}/storage/${data.photo}`}
         alt={data.name}
         sizes="(max-width: 768px) 100vw"
       />
@@ -27,7 +27,6 @@ async function Categories({}: Props) {
 
   return (
     <section className="px-4">
-      <h2 className="font-semibold mb-4">Browse Category</h2>
       <div className="grid grid-cols-4 gap-4">
         {(data ?? []).map(category => <ContentCategory key={category.id} data={category} />)}
       </div>

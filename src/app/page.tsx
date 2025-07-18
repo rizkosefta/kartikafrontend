@@ -2,10 +2,14 @@ import Logo from "@/assets/images/logo.jpg";
 import Slider from "@/components/slider";
 import Categories from "@/components/categories";
 import Image from "next/image";
+import Packages from "@/components/packages";
+import Testimonials from "@/components/testimonials";
 
 export default function Home() {
   return (
    <>
+
+  {/* header */}
     <header className="flex items-center justify-between px-4">
       <span className="flex gap-x-2 items-center">
         <span className="text-color1">
@@ -15,6 +19,7 @@ export default function Home() {
       </span>
     </header>
 
+  {/* promosi poster */}
     <section className="relative">
       <Slider 
       spaceBetween={20} 
@@ -71,7 +76,29 @@ export default function Home() {
       </Slider>
     </section>
 
-    <Categories />
+  {/* category paket */}
+    <section className="relative">
+      <h2 className="font-semibold mb-4 px-4">Category paket</h2>
+      <Categories />
+    </section>
+
+  {/* paket yang tersedia */}
+    <section className="relative">
+      <h2 className="font-semibold mb-4 px-4">Paket yang Tersedia</h2>
+      <Packages show="popular"/>
+    </section>
+
+  {/* testimonials */}
+    <section className="relative">
+      <h2 className="font-semibold mb-4 px-4">Testimonials</h2>
+      <Testimonials/>
+    </section>
+
+  {/* paket terlaris */}
+    <section className="relative">
+      <h2 className="font-semibold mb-4 px-4">Fresh From Kitchen</h2>
+      <Packages show="newest"/>
+    </section>
   </>
   );
 }
