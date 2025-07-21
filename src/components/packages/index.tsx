@@ -26,6 +26,12 @@ export function ContentPopular({data}: {data: TPackage[]}) {
       >
         {
           data.map(item => {
+// ini deklarasi untuk tier paling murah
+            const lowestTier = item.tiers.length > 0 ?
+        item.tiers.reduce((min, low) => low.price < min.price ? low : min)
+        : null
+
+
             return <div key={
               item.id
             } className="h-full rounded-3xl overflow-hidden relative border">
@@ -48,20 +54,14 @@ export function ContentPopular({data}: {data: TPackage[]}) {
                   <span className="font-semibold">
                   <h2>Rp.</h2>
                   </span>
-                  <span className="text-color3">{item.tiers.length > 0 ?
-                    item.tiers.reduce((min, low) => low.price < min.price ? low : min).price
-                    : 0
-                  }</span>
+                  <span className="text-color3">{(lowestTier?.price || 0).thousands()}</span>
                 </span>
 
                 <span className="flex gap-x-1">
                   <span className="text-color2">
                   <Image src={People} alt="People" className="w-6 h-6" />
                   </span>
-                  <span className="font-semibold">{item.tiers.length > 0 ?
-                    item.tiers.reduce((min, low) => low.price < min.price ? low : min).quantity
-                    : 0
-                  }</span>
+                  <span className="font-semibold">{lowestTier?.quantity || 0 } Pax</span>
                 </span>
               </span>
             </div>
@@ -84,7 +84,7 @@ export function ContentNewest({data, withTierDetailsQuantity}: {data: TPackage[]
         item.tiers.reduce((max, current) => current.price > max.price ? current : max)
         : null
 
-        return <div className="flex gap-x-3" key={item.id}>
+        return (<div className="flex gap-x-3 relative" key={item.id}>
         <figure
           className="w-[120px] h-[160px] flex-none rounded-2xl overflow-hidden relative"
         >
@@ -109,14 +109,7 @@ export function ContentNewest({data, withTierDetailsQuantity}: {data: TPackage[]
             <span className="text-color2">
               <Image src={People} alt="People" className="w-6 h-6" />
             </span>
-            <span className="text-gray2">
-              {
-                lowestTier?.quantity || 0
-              }
-              {
-                !!withTierDetailsQuantity && `- ${highestTier?.quantity || 0} orang`
-              }
-              </span>
+            <span className="font-semibold">{lowestTier?.quantity || 0} Pax</span>
           </span>
 
           <span className="flex gap-x-1">
@@ -126,7 +119,10 @@ export function ContentNewest({data, withTierDetailsQuantity}: {data: TPackage[]
             <span className="text-gray2">{item.city.name}</span>
           </span>
         </span>
+
+        <Link href={`/packages/${item.slug}`} className="absolute inset-0"></Link>
       </div>
+        );
       })
     }
   </div>;

@@ -27,7 +27,7 @@ export async function generateMetaData(
     );
 
     return {
-      title: categories.data.name,
+      title: `category ${categories.data.name}`,
     };
 }
 
