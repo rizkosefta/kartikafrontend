@@ -20,7 +20,7 @@ async function PageCategoryDetails({params}: Request) {
     const { data }: { data: TCategory } = await getCategoryDetails
     (params.categorySlug);
 
-    console.log(data);
+
 
   return <>
   <ComposeHeader />
