@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body>
       <main 
-      className="container max-w-sm mx-auto flex flex-col gap-y-5 relative pt-16">
+      className="container max-w-sm mx-auto flex flex-col gap-y-5 relative">
         {children}
       </main>
         {modal}
