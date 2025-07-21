@@ -7,6 +7,7 @@ import People from '@/assets/images/people.svg';
 import '@/libs/thousands'
 import { ContentNewest, ContentPopular } from '@/components/packages';
 import { OpenModal } from '@/components/modal';
+import { Metadata, ResolvingMetadata } from 'next';
 
 
 type Request = {
@@ -15,6 +16,20 @@ type Request = {
   }
  
 };
+
+
+export async function generateMetaData(
+  {params}: Request, 
+  parent: ResolvingMetadata
+  ): Promise<Metadata>{
+    const categories: { data: TCategory } = await getCategoryDetails(
+      params.categorySlug
+    );
+
+    return {
+      title: categories.data.name,
+    };
+}
 
 async function PageCategoryDetails({params}: Request) {
     const { data }: { data: TCategory } = await getCategoryDetails

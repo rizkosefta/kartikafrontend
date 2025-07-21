@@ -11,7 +11,7 @@ export default function Home() {
    <>
 
   {/* header */}
-    <header className="flex items-center justify-between px-4">
+    <header className="flex items-center justify-between px-4 pt-16" >
       <span className="flex gap-x-2 items-center">
         <span className="text-color1">
           <img src={Logo.src} alt="Logo" className="h-8 w-auto" />
