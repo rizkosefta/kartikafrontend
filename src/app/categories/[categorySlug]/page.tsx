@@ -4,7 +4,7 @@ import { TCategory } from '@/components/categories/types';
 import ComposeHeader from './ComposeHeader';
 import Image from 'next/image';
 import People from '@/assets/images/people.svg';
-import '@/libs/thousands'
+
 import { ContentNewest, ContentPopular } from '@/components/packages';
 import { OpenModal } from '@/components/modal';
 import { Metadata, ResolvingMetadata } from 'next';

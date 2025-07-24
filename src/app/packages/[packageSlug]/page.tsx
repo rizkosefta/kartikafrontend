@@ -11,7 +11,7 @@ import { ContentBonus } from '@/components/bonuses';
 import PinPoint from "@/assets/images/pinpoint.svg";
 import Truck from "@/assets/images/truck.svg";
 import { ContentTestimonial } from '@/components/testimonials';
-import { TTier } from '@/components/tiers/types';
+import { TTier } from '@/components/tiers/types'; 
 import Link from 'next/link';
 
 type Request = {
