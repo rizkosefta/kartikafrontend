@@ -5,11 +5,13 @@ import Image from 'next/image'
 import People from "@/assets/images/people.svg";
 import Point from "@/assets/images/point.svg";
 import Link from 'next/link';
+import "@/libs/thousands";
 
 
 
 
-export function ContentTier({packageSlug, data}: {packageSlug: string, data:TTier}) {
+export function ContentTier({
+  packageSlug, data, isPriceShown = true }: {packageSlug: string, data:TTier, isPriceShown?: boolean}) {
   return (
     <div
             className="flex flex-col gap-y-3 h-full p-4 rounded-3xl relative border"
@@ -46,28 +48,34 @@ export function ContentTier({packageSlug, data}: {packageSlug: string, data:TTie
                 }
             </ul>
 
-            <hr />
+{
+  !!isPriceShown &&
+  <>
+  <hr />
 
-            <span className="flex flex-col gap-y-2">
-              <span className="font-semibold text-xl">Rp {data.price.thousands()}</span>
-              <span className="flex gap-x-3">
-                <span className="flex gap-x-1">
-                  <span className="text-color2">
-                  <Image src={Clock} alt="People" className="w-6 h-6" />
-                  </span>
-                  <span className="text-gray2">{data.duration} days</span>
-                </span>
+<span className="flex flex-col gap-y-2">
+  <span className="font-semibold text-xl">Rp {Number(data.price).thousands()}</span>
+  <span className="flex gap-x-3">
+    <span className="flex gap-x-1">
+      <span className="text-color2">
+      <Image src={Clock} alt="People" className="w-6 h-6" />
+      </span>
+      <span className="text-gray2">{data.duration} days</span>
+    </span>
 
-                <span className="flex gap-x-1">
-                  <span className="text-color2">
-                  <Image src={People} alt="People" className="w-6 h-6" />
-                  </span>
-                  <span className="text-gray2">{data.quantity} orang</span>
-                </span>
-              </span>
-            </span>
-
-            <hr />
+    <span className="flex gap-x-1">
+      <span className="text-color2">
+      <Image src={People} alt="People" className="w-6 h-6" />
+      </span>
+      <span className="text-gray2">{data.quantity} orang</span>
+    </span>
+  </span>
+</span>
+<hr/>
+  </>
+            
+            
+  }
 
             <Link href={`/packages/${packageSlug}/informations?tier=${data.id}`} 
             className="flex py-3 border border-gray1 rounded-full font-semibold justify-center hover:bg-color1 hover:text-white hover:border-transparent"

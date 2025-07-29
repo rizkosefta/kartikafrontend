@@ -77,7 +77,7 @@ async function PackageTiersPage({params}: Request) {
               </span>
               <span className="text-gray2"> {highestTier?.quantity || 0} - {lowestTier?.quantity || 0} Pax</span>
             </span>
-          </span>
+          </span> 
         </div>
       </section>
 
@@ -87,7 +87,7 @@ async function PackageTiersPage({params}: Request) {
         <div className="flex flex-col gap-y-4 px-4">
           {
             cateringPackages.data.tiers.map(tier => {
-              return <ContentTier data={tier} key={tier.id} packageSlug={params.packageSlug}/>
+              return <ContentTier data={tier} key={tier.id} packageSlug={params.packageSlug} isPriceShown/>
             })
           }
         </div>

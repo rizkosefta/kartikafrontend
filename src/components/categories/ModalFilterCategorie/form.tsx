@@ -2,7 +2,7 @@
 
 import { navigateFilterCategories } from "@/components/categories/actions";
 import { TCategory } from "@/components/categories/types";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 
 type Props = {
     categorySlug: string;
@@ -13,7 +13,7 @@ type Props = {
 
 function FormFilterCategories({categorySlug, categories}: Props) {
 
-    const[, formAction] = useFormState (navigateFilterCategories,{
+    const[, formAction] = useActionState (navigateFilterCategories,{
         message: "",field: ""
     })
 
@@ -36,7 +36,7 @@ function FormFilterCategories({categorySlug, categories}: Props) {
               id={`${category.id}-${category.slug}`}
               className="hidden peer"
               defaultChecked={categorySlug === category.slug}
-              defaultValue={category.slug}
+              defaultValue={category.slug || ""}
             />
             <span
               className="radio p-1 rounded-full border border-color2 w-6 aspect-square peer-checked:[&>span]:opacity-100"

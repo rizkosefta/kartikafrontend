@@ -2,6 +2,7 @@ import { TModalPosRegistered, TModalRegistered } from '@/components/modal'
 import React from 'react'
 import { RouterBack, PreventScrolling } from '@/components/modal'
 import ModalFilterCategorie from '@/components/categories/ModalFilterCategorie'
+import ModalDetailTier from '@/components/tiers/ModalDetailTier'
 
 type Request = {
     searchParams: {
@@ -34,6 +35,10 @@ async function page ({searchParams}: Request) {
                 {
                     searchParams.modal === "filter-category" &&
                     <ModalFilterCategorie categorySlug={searchParams.categorySlug} />
+                }
+                {
+                    searchParams.modal === "tier" &&
+                    <ModalDetailTier packageSlug={searchParams.packageSlug} tierId={searchParams.tierId} />
                 }
             </div>
 
