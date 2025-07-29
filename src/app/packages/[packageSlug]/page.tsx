@@ -13,6 +13,7 @@ import Truck from "@/assets/images/truck.svg";
 import { ContentTestimonial } from '@/components/testimonials';
 import { TTier } from '@/components/tiers/types'; 
 import Link from 'next/link';
+import "@/libs/thousands";
 
 type Request = {
     params: {
@@ -77,7 +78,7 @@ async function PackageDetailsPage({params}: Request) {
                 <span className="text-color2">
                 <Image src={Notes} alt="Notes" className="w-6 h-6" />
                 </span>
-                <span className="font-semibold text-xl">Rp. {(lowestTier?.price || 0).thousands()}</span>
+                <span className="font-semibold text-xl">Rp. {Number(lowestTier?.price || 0).thousands()}</span>
               </span>
 
               <span className="flex gap-x-1">
@@ -201,7 +202,7 @@ async function PackageDetailsPage({params}: Request) {
           className="rounded-full flex justify-between gap-x-3 bg-white shadow-[0px_12px_30px_0px_#07041517] p-3 pl-6"
         >
           <span className="flex flex-col">
-            <span className="font-semibold text-xl">Rp. {(lowestTier?.price || 0).thousands()}</span>
+            <span className="font-semibold text-xl">Rp. {Number(lowestTier?.price || 0).thousands()}</span>
             <span className="text-gray2 text-sm">{lowestTier?.duration} days, {lowestTier?.quantity} people</span>
           </span>
 

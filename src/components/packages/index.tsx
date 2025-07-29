@@ -7,6 +7,7 @@ import Slider from "@/components/slider";
 import Notes from "@/assets/images/notes.svg";
 import People from "@/assets/images/people.svg";
 import PinPoint from "@/assets/images/pinpoint.svg";
+import "@/libs/thousands";
 
 
 type Props = {
@@ -54,7 +55,7 @@ export function ContentPopular({data}: {data: TPackage[]}) {
                   <span className="font-semibold">
                   <h2>Rp.</h2>
                   </span>
-                  <span className="text-color3">{(lowestTier?.price || 0).thousands()}</span>
+                  <span className="text-color3">{Number(lowestTier?.price || 0).thousands()}</span>
                 </span>
 
                 <span className="flex gap-x-1">

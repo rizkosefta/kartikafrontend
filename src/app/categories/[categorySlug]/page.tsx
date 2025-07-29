@@ -4,6 +4,7 @@ import { TCategory } from '@/components/categories/types';
 import ComposeHeader from './ComposeHeader';
 import Image from 'next/image';
 import People from '@/assets/images/people.svg';
+import "@/libs/thousands";
 
 import { ContentNewest, ContentPopular } from '@/components/packages';
 import { OpenModal } from '@/components/modal';
@@ -62,8 +63,8 @@ async function PageCategoryDetails({params}: Request) {
                   <Image src={People} alt="Notes" className="w-6 h-6" />
                 </span>
                 <span className="text-gray2">
-                  {data.catering_package_count?.thousands()}{""}
-                  {`package${data.catering_package_count > 1 ? "s" : ""}`}
+                  {Number(data.catering_package_count || 0).thousands()}{""}
+                  {`package${(data.catering_package_count || 0) > 1 ? "s" : ""}`}
                 </span>
               </span>
             </span>
