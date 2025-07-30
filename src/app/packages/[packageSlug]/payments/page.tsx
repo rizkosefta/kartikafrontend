@@ -8,7 +8,7 @@ import Notes from "@/assets/images/notes.svg";
 import People from "@/assets/images/people.svg";
 import { ContentTier } from '@/components/tiers';
 import { OpenModal } from '@/components/modal';
-import Form from '@/app/packages/[packageSlug]/informations/Form';
+import Form from '@/app/packages/[packageSlug]/payments/Form';
 
 
 type Request = {
@@ -27,7 +27,7 @@ export async function generateMetaData(
       const cateringPackages = await getPackageDetails(params.packageSlug);
 
       return {
-        title: `Information | ${cateringPackages.data.name}`,
+        title: `Payment | ${cateringPackages.data.name}`,
         description: cateringPackages.data.about,
       };
     } catch (error) {

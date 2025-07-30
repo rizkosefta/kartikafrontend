@@ -26,7 +26,7 @@ async function ModalDetailTier({packageSlug, tierId}: Props) {
 
 
   return (
-    <ContentTier packageSlug={packageSlug} data={currentTier} isPriceShown={false}/>
+    <ContentTier data={currentTier} packageSlug={packageSlug}/>
   )
 }
 

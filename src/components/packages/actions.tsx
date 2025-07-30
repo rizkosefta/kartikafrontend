@@ -1,4 +1,12 @@
+"use server";
 import { redirect } from "next/navigation"
+
+interface File{
+    size: number;
+    type: string;
+    name: string;
+    lastModified: number;
+}
 
 export async function getPackages() {
     try {
@@ -49,9 +57,8 @@ export async function getPackageDetails(packageSlug: string) {
     }
 }
 
-
 export async function submitInformation(
-    previousState: any,
+    prevState: any,
     formData: FormData
 ) {
     const name = formData.get("name");
@@ -59,7 +66,7 @@ export async function submitInformation(
     const phone = formData.get("phone");
     const started_at = formData.get("started_at");
     const slug = formData.get("slug");
-    const catering_package_id = formData.get("catering_package_id");
+   // const catering_package_id = formData.get("catering_package_id");
     const tierId = formData.get("catering_tier_id");
 
     if(name === ""){
@@ -103,4 +110,93 @@ export async function submitInformation(
             tierId,
         },
     };
+}
+export async function submitShipping(
+    prevState: any,
+    formData: FormData
+) {
+    const address = formData.get("address");
+    const post_code = formData.get("post_code");
+    const notes = formData.get("notes");
+    const slug = formData.get("slug");
+   // const catering_package_id = formData.get("catering_package_id");
+    const tierId = formData.get("catering_tier_id");
+
+    if(address === ""){
+        return{
+            message: "Address tidak boleh kosong",
+            field: "address"
+        }
+    }
+
+    if(post_code === ""){
+        return{
+            message: "Post code tidak boleh kosong",
+            field: "post_code"
+        }
+    }
+
+    if(notes === ""){
+        return{
+            message: "Notes tidak boleh kosong",
+            field: "notes"
+        }
+    }
+
+    return {
+        message: "berhasil",
+        field: "",
+        data:{
+            slug,
+            address,
+            post_code,
+            notes,
+            tierId,
+        },
+    };
+}
+export async function submitPayment(
+    prevState: any,
+    formData: FormData
+) {
+    const slug = formData.get("slug") as string;
+    const phone = formData.get("phone");
+    const proof = formData.get("proof") as File;
+   
+
+    if(proof.size === 0){
+        return{
+            message: "Bukti pembayaran tidak boleh kosong",
+            field: "proof"
+        };
+    }
+
+    try {
+        const res = await fetch(
+            `${process.env.HOST_API}/api/booking-transaction`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await res.json();
+
+        return{
+            message: "berhasil",
+            field: "",
+            data:{
+                slug,
+                phone,
+                booking_trx_id: data.data.booking_trx_id,
+            }
+        }
+    } catch (error: any) {
+        
+    return {
+        message: error.message,
+        field: "toaster",
+       
+    };
+    }
 }

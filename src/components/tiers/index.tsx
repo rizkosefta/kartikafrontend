@@ -11,7 +11,13 @@ import "@/libs/thousands";
 
 
 export function ContentTier({
-  packageSlug, data, isPriceShown = true }: {packageSlug: string, data:TTier, isPriceShown?: boolean}) {
+  packageSlug,
+   data,
+  isPriceShown 
+}: 
+  {packageSlug: string,
+  data:TTier,
+  isPriceShown?: boolean}) {
   return (
     <div
             className="flex flex-col gap-y-3 h-full p-4 rounded-3xl relative border"

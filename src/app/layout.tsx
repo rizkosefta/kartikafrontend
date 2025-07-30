@@ -4,6 +4,7 @@ import { Poppins} from "next/font/google";
 
 import "@/assets/css/index.css"; 
 import '@/libs/thousands';
+import Toaster from "@/components/Toaster";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -33,6 +34,8 @@ export default function RootLayout({
         {children}
       </main>
         {modal}
+
+        <Toaster/>
       </body>
     </html>
   );
