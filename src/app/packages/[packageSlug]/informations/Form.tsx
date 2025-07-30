@@ -45,7 +45,7 @@ function Form({data, tierId}: Props) {
         (tier) => String(tier.id) === tierId);
 
 
-        const tax =(currentTier?.price || 0) * 0.11
+        const tax =(currentTier?.price || 0) * 0.05
         const grandTotal = (currentTier?.price || 0) + tax
 
         const [state, formAction] = useActionState(submitInformation, initialState)
@@ -259,7 +259,7 @@ function Form({data, tierId}: Props) {
           <div
             className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3"
           >
-            <span className="text-sm text-gray2">PPN 11%</span>
+            <span className="text-sm text-gray2">Biaya service 5%</span>
             <span className="font-semibold">Rp {(tax).thousands()}</span>
           </div>
         </div>

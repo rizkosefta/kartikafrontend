@@ -14,6 +14,8 @@ export function ContentTier({
   packageSlug,
    data,
   isPriceShown 
+
+  
 }: 
   {packageSlug: string,
   data:TTier,

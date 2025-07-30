@@ -22,15 +22,15 @@ function Bottombar ({}: Props){
         },
         {
             key: "order",
-            label: "Order",
+            label: "checkOrder",
             icon: <Image src={Receipt} alt="Receipt" className="w-6 h-6" />,
             slug: "/orders"
         },
         {
-            key: "history",
+            key: "help",
             label: "Help",
             icon: <Image src={Support247} alt="Support247" className="w-6 h-6" />,
-            slug: "/helps"
+            slug: "https://wa.me/628977871757?text=Halo, saya butuh bantuan untuk aplikasi catering ini"
         },
     ]
 
@@ -47,19 +47,37 @@ function Bottombar ({}: Props){
                     isActive = true;
                 }
               }
+                // Check if it's an external link (WhatsApp)
+                const isExternalLink = menu.slug.startsWith('http');
+                
                 return (
                   <li className="" key={menu.key}>
-                    <Link
-                      aria-current={isActive ? "true" : "false"}
-                      href={menu.slug}
-                      className={[
-                        "flex flex-col items-center rounded-full px-3 py-1 w-[70px]",
-                        isActive ? "bg-color1 text-white" : "text-gray2"
-                      ].join(" ")}
-                    >
-                      {menu.icon}
-                      <span className="text-sm">Home</span>
-                    </Link>
+                    {isExternalLink ? (
+                      <a
+                        href={menu.slug}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={[
+                          "flex flex-col items-center rounded-full px-3 py-1 w-[70px]",
+                          "text-gray2 hover:bg-color1 hover:text-white transition-colors"
+                        ].join(" ")}
+                      >
+                        {menu.icon}
+                        <span className="text-sm">{menu.label}</span>
+                      </a>
+                    ) : (
+                      <Link
+                        aria-current={isActive ? "true" : "false"}
+                        href={menu.slug}
+                        className={[
+                          "flex flex-col items-center rounded-full px-3 py-1 w-[70px]",
+                          isActive ? "bg-color1 text-white" : "text-gray2"
+                        ].join(" ")}
+                      >
+                        {menu.icon}
+                        <span className="text-sm">{menu.label}</span>
+                      </Link>
+                    )}
                   </li>
                 );
             })}
