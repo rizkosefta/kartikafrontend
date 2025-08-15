@@ -113,6 +113,7 @@ export async function submitShipping(
 ) {
     const address = formData.get("address");
     const post_code = formData.get("post_code");
+    const delivery_time= formData.get("delivery_time");
     const notes = formData.get("notes");
     const slug = formData.get("slug");
    // const catering_package_id = formData.get("catering_package_id");
@@ -130,6 +131,12 @@ export async function submitShipping(
             field: "post_code"
         }
     }
+    if(delivery_time === ""){
+        return{
+            message: "delivery_time tidak boleh kosong",
+            field: "delivery_time"
+        }
+    }
     if(notes === ""){
         return{
             message: "Notes tidak boleh kosong",
@@ -143,6 +150,7 @@ export async function submitShipping(
             slug,
             address,
             post_code,
+            delivery_time,
             notes,
             tierId,
         },

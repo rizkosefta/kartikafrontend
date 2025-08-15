@@ -256,25 +256,6 @@ type Request = {
             >Phone</label>
         </div>
 
-        <div className="flex relative">
-          <span
-            className="absolute left-0 bottom-2 top-3 aspect-square flex items-center justify-center text-color2">
-                <Image src={Calendar} alt="Calendar" />
-          </span>
-          <input
-          readOnly
-            type="date"
-            className="pl-12 w-full pt-4 pr-4 border border-light3 h-[69px] focus:outline-none focus:border-color2 rounded-2xl peer placeholder:opacity-0 placeholder-shown:pt-0 font-semibold appearance-none"
-            name="started_at"
-            id="started_at"
-            placeholder="Start At"
-            defaultValue={bookingDetails.data.started_at}
-          />
-          <label
-            htmlFor="started_at"
-            className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
-            >Start At</label>
-        </div>
       </div>
     </div>
 
@@ -310,7 +291,7 @@ type Request = {
                 <div
                   className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3"
                 >
-                  <span className="text-sm text-gray2">Started At</span>
+                  <span className="text-sm text-gray2">Tanggal Acara</span>
                   <span className="font-semibold">
                     {format(bookingDetails.data.started_at, "dd LLLL yyyy")}
                   </span>
@@ -320,16 +301,22 @@ type Request = {
       {/*jam mulai */}
       <div className="flex relative">
                 <span
-                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
-                    <Image src={Clock} alt="Clock" />
+                  className="absolute left-4 top-5 aspect-square flex items-center justify-center text-color2">
+                    <Image src={Clock} alt="Address" />
                 </span>
-                <div
-                  className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3">
-                  <span className="text-sm text-gray2">Time</span>
-                  <span className="font-semibold">
-                    {format(bookingDetails.data.started_at, "HH:mm")}
-                  </span>
-                </div>
+                <textarea
+                readOnly
+                  className="pl-12 w-full pt-7 pr-4 border border-light3 focus:outline-none focus:border-color2 rounded-2xl peer placeholder:opacity-0 placeholder-shown:pt-6 font-semibold"
+                  name="elivery_time"
+                  id="elivery_time"
+                  rows={2}
+                  placeholder="elivery_time"
+                  defaultValue={ bookingDetails.data.delivery_time}
+                  ></textarea>
+                <label
+                  htmlFor="elivery_time"
+                  className="absolute pointer-events-none text-gray2 flex items-center ml-12 peer-placeholder-shown:top-5 top-3 peer-placeholder-shown:text-base text-sm transition-all duration-300"
+                  >elivery_time</label>
       </div>
       {/*tanggal selesai */}
       {/*kota */}

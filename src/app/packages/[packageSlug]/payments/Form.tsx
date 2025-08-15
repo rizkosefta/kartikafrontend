@@ -205,7 +205,7 @@ function Form({data, tierId}: Props) {
           <label
             htmlFor="started_at"
             className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
-            >Start At</label>
+            >Tanggal Acara</label>
         </div>
       </div>
     </div>
@@ -224,7 +224,7 @@ function Form({data, tierId}: Props) {
         htmlFor="shipping-address"
         className="flex justify-between items-center cursor-pointer [--state-rotate:0deg] peer-checked:[--state-rotate:180deg]"
       >
-        <h6 className="text-xl font-bold">Shipping Address</h6>
+        <h6 className="text-xl font-bold">Alamat Pengiriman</h6>
         <span
           className="text-color2 flex items-center justify-center transition-all duration-300 [rotate:var(--state-rotate)] bg-white border rounded-full p-2"
         >
@@ -233,37 +233,7 @@ function Form({data, tierId}: Props) {
       </label>
       <div
         className="flex flex-col gap-y-5 max-h-0 overflow-hidden transition-all duration-300 h-full peer-checked:mt-5 peer-checked:max-h-screen">
-      {/*tanggal mulai */}
-      <div className="flex relative">
-                <span
-                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
-                    <Image src={Calendar} alt="Calendar" />
-                </span>
-                <div
-                  className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3"
-                >
-                  <span className="text-sm text-gray2">Started At</span>
-                  <span className="font-semibold">
-                    {formatDateSafely(checkout[data.slug]?.started_at, "dd LLLL yyyy")}
-                  </span>
-                </div>
-      </div>
-      {/*tanggal selesai */}
-      {/*jam mulai */}
-      <div className="flex relative">
-                <span
-                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
-                    <Image src={Clock} alt="Clock" />
-                </span>
-                <div
-                  className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3">
-                  <span className="text-sm text-gray2">Time</span>
-                  <span className="font-semibold">
-                    {formatDateSafely(checkout[data.slug]?.started_at, "HH:mm")}
-                  </span>
-                </div>
-      </div>
-      {/*tanggal selesai */}
+      
       {/*kota */}
       <div className="flex relative">
                 <span
@@ -322,6 +292,28 @@ function Form({data, tierId}: Props) {
                   className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
                   >Post code</label>
       </div>
+
+      <div className="flex relative">
+                <span
+                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
+                  <Image src={Clock} alt="Clock" />
+                </span>
+                  <input
+                    readOnly
+                    type="text"
+                    className="pl-12 w-full pt-4 pr-4 border border-light3 h-[69px] focus:outline-none focus:border-color2 rounded-2xl peer placeholder:opacity-0 placeholder-shown:pt-0 font-semibold"
+                    name="delivery_time"
+                    id="delivery_time"
+                    placeholder="Delivery Time"
+                    defaultValue={checkout[data.slug]?.delivery_time || ""}
+                  />
+                  <label
+                    htmlFor="delivery_time"
+                    className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
+                  >Delivery Time</label>
+                
+      </div>
+
 
       <div className="flex relative">
                 <span

@@ -120,28 +120,42 @@ function Form({data, tierId}: Props) {
                 <div
                   className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3"
                 >
-                  <span className="text-sm text-gray2">Started At</span>
+                  <span className="text-sm text-gray2">Tanggal Acara</span>
                   <span className="font-semibold">
                     {formatDateSafely(checkout[data.slug]?.started_at, "dd LLLL yyyy")}
                   </span>
                 </div>
       </div>
       {/*tanggal selesai */}
-      {/*jam mulai */}
-      <div className="flex relative">
-                <span
-                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
-                    <Image src={Clock} alt="Clock" />
-                </span>
-                <div
-                  className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3">
-                  <span className="text-sm text-gray2">Time</span>
-                  <span className="font-semibold">
-                    {formatDateSafely(checkout[data.slug]?.started_at, "HH:mm")}
-                  </span>
-                </div>
-      </div>
-      {/*tanggal selesai */}
+      {/* jam mulai */}
+      {/* <div className="flex relative">
+        <span
+          className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
+            <Image src={Clock} alt="Clock" />
+        </span>
+        <div className="pl-12 flex flex-col w-full justify-center pr-4 h-[69px] rounded-2xl bg-gray3">
+          <label htmlFor="started_at_time" className="text-sm text-gray2">Jam</label>
+          <input
+            type="time"
+            id="started_at_time"
+            name="started_at_time"
+            className="font-semibold bg-transparent outline-none"
+            defaultValue={
+              checkout[data.slug]?.delivery_time
+                ? (() => {
+                    const date = new Date(checkout[data.slug]?.delivery_time);
+                    if (!isNaN(date.getTime())) {
+                      return date.toISOString().substring(11, 16); // "HH:mm"
+                    }
+                    return "";
+                  })()
+                : ""
+            }
+            required
+          />
+        </div>
+      </div> */}
+      {/*jam selesai */}
       {/*kota */}
       <div className="flex relative">
                 <span
@@ -197,6 +211,26 @@ function Form({data, tierId}: Props) {
                   htmlFor="post_code"
                   className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
                   >Post code</label>
+      </div>
+      
+      <div className="flex relative">
+                <span
+                  className="absolute left-0 bottom-2 top-2 aspect-square flex items-center justify-center text-color2">
+                  <Image src={Clock} alt="Clock" />
+                </span>
+                  <input
+                    type="time"
+                    className="pl-12 w-full pt-4 pr-4 border border-light3 h-[69px] focus:outline-none focus:border-color2 rounded-2xl peer placeholder:opacity-0 placeholder-shown:pt-0 font-semibold"
+                    name="delivery_time"
+                    id="delivery_time"
+                    placeholder="Delivery Time"
+                    defaultValue={checkout[data.slug]?.delivery_time || ""}
+                  />
+                  <label
+                    htmlFor="delivery_time"
+                    className="absolute pointer-events-none text-gray2 inset-0 flex items-center ml-12 peer-placeholder-shown:mb-0 mb-8 peer-placeholder-shown:text-base text-sm transition-all duration-300"
+                  >Delivery Time</label>
+                
       </div>
 
       <div className="flex relative">
