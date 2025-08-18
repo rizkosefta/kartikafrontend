@@ -3,7 +3,7 @@ import ComposeHeader from './ComposeHeader';
 import Image from 'next/image';
 import Notes from "@/assets/images/notes.svg"
 import People from "@/assets/images/people.svg"
-import { checkBookingByTrxId } from '@/components/packages/actions';
+import { checkBookingByTrxId, markOrderAsCompleted } from '@/components/packages/actions';
 import { TBookingDetails } from '@/components/packages/types';
 import { OpenModal } from '@/components/modal';
 import receipt from "@/assets/images/receipt.svg"
@@ -23,7 +23,8 @@ import Postcode from "@/assets/images/postcode.svg";
 import BCA from "@/assets/images/logobca.svg";
 import BadgeCheckmark from "@/assets/images/badgecheckmar.svg";
 import Mandiri from "@/assets/images/logomandiri.svg";
-import Receipt from "@/assets/images/receipt.svg";      
+import Receipt from "@/assets/images/receipt.svg";
+import ThumbsUp from "@/assets/images/thumbsup.svg";
 
 type Request = {
   params: {
@@ -76,7 +77,7 @@ type Request = {
               >
                 <path
                   opacity="0.4"
-                  d="M7.29079 21.3416C8.17913 20.3883 9.53329 20.4641 10.3133 21.5041L11.4075 22.9666C12.285 24.1258 13.7041 24.1258 14.5816 22.9666L15.6758 21.5041C16.4558 20.4641 17.81 20.3883 18.6983 21.3416C20.6266 23.4 22.1975 22.7175 22.1975 19.8358V7.62663C22.2083 3.26079 21.19 2.16663 17.095 2.16663H8.90496C4.80996 2.16663 3.79163 3.26079 3.79163 7.62663V19.825C3.79163 22.7175 5.37329 23.3891 7.29079 21.3416Z"
+                  d="M7.29079 21.3416C8.17913 20.3883 9.53329 20.4641 10.3133 21.5041L11.4075 22.9666C12.285 24.1258 13.7041 24.1258 14.5816 22.9666L15.6758 21.5041C16.4558 20.3883 17.81 20.3883 18.6983 21.3416C20.6266 23.4 22.1975 22.7175 22.1975 19.8358V7.62663C22.2083 3.26079 21.19 2.16663 17.095 2.16663H8.90496C4.80996 2.16663 3.79163 3.26079 3.79163 7.62663V19.825C3.79163 22.7175 5.37329 23.3891 7.29079 21.3416Z"
                   className="fill-current"
                 />
                 <path
@@ -102,6 +103,53 @@ type Request = {
               <span className="font-semibold">Sukses Terbayar & Siap Antar</span>
             </span>
           </span>
+}
+
+{/* Status Pesanan Selesai */}
+{
+    bookingDetails.data.isCompleted === 1 &&
+          <span
+            className="bg-green-500 text-white flex gap-x-3 p-3 rounded-2xl items-center"
+          >
+            <span className="">
+              <Image src={ThumbsUp} alt="Completed" className="w-6 h-6" />
+            </span>
+            <span className="flex flex-col">
+              <span className="text-sm">Status Pesanan</span>
+              <span className="font-semibold">Pesanan Telah Selesai</span>
+            </span>
+          </span>
+}
+
+{/* Button Konfirmasi Pesanan Selesai */}
+{
+    bookingDetails.data.isPaid === 1 && bookingDetails.data.isCompleted === 0 &&
+          <div className="flex flex-col gap-y-3 p-4 bg-blue-50 border border-blue-200 rounded-2xl">
+            <div className="flex items-center gap-x-3">
+              <Image src={ThumbsUp} alt="Complete Order" className="w-6 h-6 text-blue-600" />
+              <span className="font-semibold text-blue-800">Konfirmasi Pesanan Selesai</span>
+            </div>
+            <p className="text-sm text-blue-700">
+              Klik tombol di bawah untuk mengkonfirmasi bahwa pesanan telah selesai dan diterima dengan baik.
+            </p>
+            <form action={async () => {
+              'use server';
+              try {
+                await markOrderAsCompleted(bookingDetails.data.booking_trx_id);
+                // Refresh the page to show updated status
+                window.location.reload();
+              } catch (error) {
+                console.error('Error marking order as completed:', error);
+              }
+            }}>
+              <button
+                type="submit"
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 font-semibold transition-colors duration-200"
+              >
+                Konfirmasi Pesanan Selesai
+              </button>
+            </form>
+          </div>
 }
 
         <div

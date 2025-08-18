@@ -250,3 +250,27 @@ export async function navigateOrdersByTrxId(
 
         return redirect(`/orders/${booking_trx_id}?phone=${phone}`)
 }
+
+export async function markOrderAsCompleted(booking_trx_id: string) {
+    try {
+        const res = await fetch(`${process.env.HOST_API}/api/mark-order-completed`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                booking_trx_id: booking_trx_id
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error('Error marking order as completed:', error);
+        throw error;
+    }
+}

@@ -55,6 +55,7 @@ export type TBookingDetails={
         quantity: number;
         duration: number;
         isPaid: 0 | 1;
+        isCompleted: 0 | 1;
         proof: string;
         cateringPackage: TPackage;
         cateringTier: TTier;
